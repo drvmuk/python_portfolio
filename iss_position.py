@@ -18,6 +18,7 @@ import logging
 import ephem
 import smtplib
 import time
+import os
 
 def email_generator(email, password):
     connection = smtplib.SMTP("smtp.gmail.com")
@@ -62,7 +63,7 @@ def iss_location(my_lat, my_lon, city):
                     print("There is sunlight, position: {}, {}".format(iss_lat, iss_lon))
                 else: 
                     logging.info("Email generation function called")
-                    email_generator("example@example.com", "password")
+                    email_generator(os.environ['email'], os.environ['password'])
                     print('ISS within range and its night, position: {}, {}".format(iss_lat, iss_lon)')
             else: pass
             
