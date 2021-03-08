@@ -19,7 +19,7 @@ def sms_generator(to, body):
     Function to generate SMS with Twilio-SMS engine
     """
     try:
-        logging.info("Rain condition met, SMS Generator function call initiated.")
+        logging.info("SMS Generator function call initiated.")
         account_sid = os.environ['account_sid']
         auth_token = os.environ['auth_token']
         client = Client(account_sid, auth_token)
