@@ -15,10 +15,6 @@ import requests
 import logging
 from datetime import datetime
 
-current_date = str(datetime.now().date())
-stock = "TSLA"
-company_name = "Tesla Inc"
-
 def stock_assessment(stock):
     """Comment-->
     When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
@@ -32,7 +28,15 @@ def stock_assessment(stock):
         response_stock = requests.get(url = URL_stock, params = params_stock)
         if response_stock.status_code == 200:
             data = response_stock.json()
-            last_3_days = [(k, v) for k, v in data["Time Series (Daily)"].items()][:3]
+            data_list= [v for k, v in data["Time Series (Daily)"].items()]
+            yesterday_closing = data_list[0]["4. close"]
+            day_b4_yesterday_closing = data_list[1]["4. close"]
+            difference = round(abs(float(yesterday_closing) - float(day_b4_yesterday_closing)), 2)
+            percentage_change = round((difference/float(yesterday_closing))*100,2)
+            
+            if percentage_change > 5:
+                get_news(company_name)
+            else: pass
         else:
             logging.info(response_stock.raise_for_status())
             return response_stock.raise_for_status()
@@ -66,3 +70,9 @@ def get_news(company_name):
     except Exception as e:
         print(e)
 
+
+current_date = str(datetime.now().date())
+stock = "TSLA"
+company_name = "Tesla Inc"
+
+stock_assessment(stock)
