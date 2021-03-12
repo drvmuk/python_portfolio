@@ -14,6 +14,7 @@ import os
 import requests
 import logging
 from datetime import datetime
+from shared_repository import Modules
 
 def stock_assessment(stock):
     """Comment-->
@@ -62,7 +63,11 @@ def get_news(company_name):
             news = []
             for i in top_3_news:
                 news.append(i["description"])
-            return news
+            to = "+911234567890"
+            body = str(news)
+            obj_ = Modules(to, body)
+            obj_.sms_generator()
+            return "News generated successfully!"
         else:
             logging.info(response_news.raise_for_status())
             return response_news.raise_for_status()
