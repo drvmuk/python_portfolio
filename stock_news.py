@@ -52,10 +52,10 @@ def get_news(company_name):
     try:
         URL_news = "https://newsapi.org/v2/everything"
         params_news = {"q": company_name,
-                  "from": current_date,
-                  "sortBy": "popularity",
-                  "apiKey": os.environ["news_api_key"]
-                    }
+                      "from": current_date,
+                      "sortBy": "popularity",
+                      "apiKey": os.environ["news_api_key"]
+                        }
         response_news = requests.get(url = URL_news, params = params_news)
         if response_news.status_code == 200:
             data = response_news.json()
