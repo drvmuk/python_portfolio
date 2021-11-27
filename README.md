@@ -8,3 +8,4 @@ Following are the desctiptions of projects:
 2. rain_alert: Check if it will rain in next 12 hours and generate sms notification to bring an umbrella. APIs used:
         i. Twilio API for sending SMS.
         ii. Open weather API for fetching weather condition.(weather code ID is used to determine rain condition)
+3. text_speech_converter: Get newspaper from article and convert text to speech uing gTTS.
