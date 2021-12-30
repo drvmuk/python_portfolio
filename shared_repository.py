@@ -9,6 +9,7 @@ Project:
 """
 import os
 import logging
+import pybase64
 from twilio.rest import Client
 
 class Modules():
@@ -32,6 +33,21 @@ class Modules():
                          )
             logging.info("Message send status: {}".format(message.status))
         except Exception as e:
-            logging.info("Error generated while executing SMS generator function, error: {}".format(e))
+            logging.info(f"Error generated while executing SMS generator function, error: {e}")
             return e
+        
 
+    def encoder_decoder(type_, string_):
+        """Comment-->
+        Function to encode and decode messages using pybase64 library
+        """
+        try:
+            if type_ == 'encode':
+                result = pybase64.b64encode(bytes(string_, 'utf-8'), altchars='_:')
+            elif type_ == 'decode':
+                result = pybase64.b64decode(string_, altchars='_:', validate=True)
+            logging.info(f'Message {type_} completed.')
+            return result
+        except Exception as e:
+            logging.info(f'Error generated while performing {type_} operation, error: {e}')
+         
