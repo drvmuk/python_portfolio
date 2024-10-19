@@ -13,4 +13,4 @@ elif morse_code:
     text = obj_.morse_to_text()
     print(f'Regular text of "{morse_code}" is ::: {text}')
 else:
-    print('Input is missing')
+    print('Input is missing, please provide input')
