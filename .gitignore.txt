@@ -1,1 +1,2 @@
-beautifulsoup_scraping.py
+venv/
+__pycache__/
